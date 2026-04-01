@@ -1,0 +1,108 @@
+<!DOCTYPE html> <html lang="tr"> <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Doruk Arat - Kişisel Web Sitesi</title> <style> :root{ --bg: #0b0f14; --bg-elev: #11161c; --card: #161b22; --text: #e8eef8; --muted: #aab6c6; --accent: #7bd389; /* yeşil ton */ --accent-2: #4ea8ff; /* mavi ton */ --radius: 14px; --shadow: 0 8px 24px rgba(0,0,0,.35); } *{box-sizing:border-box} html,body{height:100%} body{ margin:0; font-family: system-ui,-apple-system,Segoe UI, Roboto, Inter, Arial, "Helvetica Neue", sans-serif; background: radial-gradient( circle at 20% -10%, rgba(123,211,137,.15), transparent 40% ), radial-gradient( circle at 100% 0%, rgba(78,168,255,.15), transparent 40% ), linear-gradient(#0b0f14 0%, #0b0f14 100%); color:var(--text); } header{ position:sticky; top:0; z-index:10; background: rgba(10,12,15,0.85); backdrop-filter: saturate(1.2) blur(6px); border-bottom:1px solid rgba(255,255,255,.06); } .nav{ max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; } .brand{ font-weight:700; letter-spacing:.5px; display:flex; align-items:center; gap:10px;} .brand .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); display:inline-block; } nav a{ color:var(--text); text-decoration:none; margin:0 12px; font-size:14px; opacity:.95; } nav a:hover{ color:var(--accent); text-decoration:underline; }
+css
+Copy code
+main{ max-width:1100px; margin:40px auto; padding:0 20px; }
+section{ margin:60px 0; }
+
+/* Başlık kartı (hoş geldin) */
+.hero{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:20px;
+  padding:28px; border-radius:var(--radius);
+  background: linear-gradient(135deg, rgba(20,27,34,.9), rgba(27,33,42,.9));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: var(--shadow);
+}
+.hero h1{ margin:0 0 6px; font-size: clamp(28px, 4vw, 44px); line-height:1.05; }
+.hero p{ color:var(--muted); margin:0; max-width:60ch; }
+.cta{ margin-top:14px; display:flex; gap:12px; flex-wrap:wrap; }
+.btn{
+  padding:12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.25);
+  color:#0b0f14; background:var(--accent);
+  text-decoration:none; font-weight:600; transition: transform .2s ease;
+}
+.btn.secondary{ background: transparent; color:var(--text); border-color: rgba(255,255,255,.25); }
+.btn:hover{ transform: translateY(-1px); }
+.card{
+  flex:1 1 320px;
+  min-width:260px;
+  padding:20px; border-radius:var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+              rgba(23,28,38,.9);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: var(--shadow);
+}
+
+h2{ margin:0 0 12px; font-size: clamp(20px, 3vw, 28px); }
+
+/* Hakkımda içeriği */
+.about p{ color:var(--muted); line-height:1.6; }
+
+/* İletişim formu */
+form.inline{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+form .full{ grid-column:1 / -1; }
+label{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+input, textarea{
+  width:100%; padding:12px 12px; border-radius:8px;
+  border:1px solid rgba(255,255,255,.25);
+  background: rgba(12,15,20,.8); color:var(--text);
+}
+textarea{ min-height:120px; resize:vertical; }
+.form-row{ display:flex; gap:14px; align-items:end; }
+.hint{ font-size:12px; color:var(--muted); margin-top:6px; }
+.step{ font-size:12px; color:var(--muted); margin-bottom:6px; }
+
+.footer{ text-align:center; color:var(--muted); font-size:12px; padding:20px 0; }
+
+@media (max-width: 900px){
+  .hero{ flex-direction:column; align-items:flex-start; }
+  form.inline{ grid-template-columns:1fr; }
+}
+</style> </head> <body> <header> <div class="nav"> <div class="brand" aria-label="Ana sayfa"> <span class="dot" aria-hidden="true"></span> Doruk Arat </div> <nav aria-label="Sayfalar"> <a href="#hakkinda">Hakkımda</a> <a href="#iletisim">İletişim</a> </nav> </div> </header> <main> <section class="hero" aria-label="Hoş geldiniz"> <div class="card" style="flex:2;"> <h1>Merhaba, ben Doruk Arat</h1> <p>Koyu renkli, modern bir kişisel web sitesi. Kişisel projelerimi ve iletişim kanallarımı buradan paylaşıyorum.</p> <div class="cta"> <a class="btn" href="#hakkinda">Hakkımda</a> <a class="btn secondary" href="#iletisim">İletişim</a> </div> </div> <div class="card" aria-label="Profil kartı"> <h2>Profil Özeti</h2> <p class="about" style="marginTop:0;">Yazılım geliştirme ve kullanıcı deneyimi odaklı çalışmalar yapıyorum. Basit, temiz ve hızlı çözümler üretmeyi seviyorum. Modern web teknolojilerini kullanarak sürdürülebilir projeler inşa ederim.</p> </div> </section>
+php
+Copy code
+<section id="hakkinda" aria-labelledby="hakkinda-baslik">
+  <div class="card about" style="padding:22px;">
+    <h2 id="hakkinda-baslik" style="margin-top:0;">Hakkımda</h2>
+    <p>Adım Doruk Arat. Yazılım geliştirme konusunda tutkuluyum ve kullanıcı odaklı çözümler üretmeyi severim. Özellikle frontend ve UI/UX konularında çalışıyorum, performans, erişilebilirlik ve sade tasarım benim için ödün vermediğim hususlardır.</p>
+    <p>Deneyimlerim arasında modern JavaScript/TypeScript tabanlı projeler, React/Vanilla JS ile arayüz geliştirme, ve basit back-end entegrasyonları yer alır. Kendimi sürekli geliştiriyor, yeni araçlar ve metodolojilerle projelerimi güçlendirmeye çalışıyorum.</p>
+  </div>
+</section>
+
+<section id="iletisim" aria-labelledby="iletisim-baslik">
+  <div class="card" style="padding:22px;">
+    <h2 id="iletisim-baslik" style="margin-top:0;">İletişim</h2>
+    <p class="hint" style="margin-bottom:6px;">Aşağıdaki formu doldurabilir veya doğrudan e-posta gönderebilirsiniz. Bu sayfa tarafımdan bir e-posta göndermek için bir arka uç kullanmaz; formu kullanırken bir hizmete yönlendirebilirsiniz.</p>
+
+    <form class="inline" id="iletisimForm" onsubmit="return handleSubmit(event)">
+      <div>
+        <label for="ad">Adınız</label>
+        <input type="text" id="ad" name="ad" placeholder="Adınız" required />
+      </div>
+      <div>
+        <label for="mail">E-posta</label>
+        <input type="email" id="mail" name="mail" placeholder="size nasıl ulaşabiliriz?" required />
+      </div>
+
+      <div class="full" style="grid-column:1 / -1;">
+        <label for="mesaj">Mesajınız</label>
+        <textarea id="mesaj" name="mesaj" placeholder="Mesajınızı buraya yazın..." required></textarea>
+      </div>
+
+      <div class="full" style="text-align:right;">
+        <button class="btn" type="submit" aria-label="Gönder">Gönder</button>
+      </div>
+    </form>
+
+    <p class="hint" id="sonuc" style="margin-top:10px; display:none;"></p>
+
+    <div class="step" style="margin-top:8px;">
+      İsterseniz şu yöntemlerden birini kullanabilirsiniz:
+    </div>
+    <ul class="hint" style="margin:0;">
+      <li>Bir e-posta servisi (ör. Mailgun, SendGrid) ile formu sunucusuz bir yol üzerinden gönderebilirsiniz.</li>
+      <li>GitHub Pages veya benzeri bir hosting üzerinde form işleyici bir küçük sunucu kurabilir veya Netlify/Formspree gibi çözümleri kullanabilirsiniz.</li>
+    </ul>
+  </div>
+</section>
+</main> <footer class="footer" role="contentinfo"> © <span id="yil"></span> Doruk Arat. Tüm hakları saklıdır. </footer> <script> // Basit yıl göstergesi document.getElementById('yil').textContent = new Date().getFullYear(); // Basit form işleyici (yalnızca kullanıcıya geri bildirim verir) function handleSubmit(e){ e.preventDefault(); var ad = document.getElementById('ad').value.trim(); var mail = document.getElementById('mail').value.trim(); var mesaj = document.getElementById('mesaj').value.trim(); var sonuc = document.getElementById('sonuc'); if(!ad || !mail || !mesaj){ sonuc.style.display = 'block'; sonuc.style.color = '#ff7a7a'; sonuc.textContent = 'Lütfen tüm alanları doldurun.'; return false; } // Basit doğrulama tamamlandı: kullanıcıya geri bildirim göster sonuc.style.display = 'block'; sonuc.style.color = '#9be7a5'; sonuc.textContent = 'Teşekkürler, mesajınız için teşekkürler! Yakında size geri döneceğim. (Bu test için form sunucuya gönderilmez.)'; e.target.reset(); return false; } // Gelişmiş gezinme için sayfa içi kaydırma document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); }); }); </script> </body> </html>
